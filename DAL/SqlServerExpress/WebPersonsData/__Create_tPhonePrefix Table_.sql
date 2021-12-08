@@ -1,0 +1,22 @@
+USE [WebPersonData]
+GO
+
+/****** Object:  Table [dbo].[Genders]    Script Date: 2021-12-07 05:07:35 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tPhonePrefix](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[tPrefix] [varchar](3) NOT NULL,
+
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
