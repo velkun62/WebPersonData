@@ -1,7 +1,7 @@
 USE [WebPersonData]
 GO
 
-/****** Object:  Table [dbo].[Genders]    Script Date: 2021-12-07 05:07:35 ******/
+/****** Object:  Table [dbo].[Genders]     Script Date: 2021-12-07 05:07:35 ******/
 SET ANSI_NULLS ON
 GO
 
