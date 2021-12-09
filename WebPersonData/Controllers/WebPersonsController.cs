@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,18 +45,18 @@ namespace WebPersonData.Controllers
         {
 
             int ? rId = mapCardId2Id.ContainsKey(person.CardId) ? mapCardId2Id[person.CardId] : -1;
-            person.tEmailId = mapMailId2Id.ContainsKey(person.Email) ? mapMailId2Id[person.Email] : -1;
-            person.tPhoneId = mapPhoneId2Id.ContainsKey(person.Phone) ? mapPhoneId2Id[person.Phone] : -1;
-            var rPrefix = from pr in ArrPhonePrefixes
-                          where pr == person.Phone.Substring(0, pr.Length)
-                            select pr;
+            person.tEmailId = person.Email != null && mapMailId2Id.ContainsKey(person.Email) ? mapMailId2Id[person.Email] : -1;
+            person.tPhoneId = person.Phone != null && mapPhoneId2Id.ContainsKey(person.Phone) ? mapPhoneId2Id[person.Phone] : -1;
+            var rPrefix = person.tPhoneId <= 0 ? null : from pr in ArrPhonePrefixes
+                                                              where pr == person.Phone.Substring(0, pr.Length)
+                                                                select pr;
 
             if (person.tEmailId < 0 && person.Email != null && person.Email.Length > 0)
             {
                 if (!DAL.ValidatorEmail.EmailIsValid(person.Email))
                     return null;
             }
-            var rPref = rPrefix.ToArray()[0];
+            var rPref =  rPrefix != null ? rPrefix.ToArray()[0] : "";
 
             var dtBirth = DateTime.Now;
             if (!DateTime.TryParse(person.BirthDay, out dtBirth))
